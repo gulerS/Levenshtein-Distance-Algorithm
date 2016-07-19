@@ -7,16 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
 namespace LevenshteinAlgoritmasi
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MetroForm
     {
         public readonly List<string> KelimeBankasi;
         public Form1()
         {
             InitializeComponent();
-            KelimeBankasi = new List<string>() { "aa", "cronom", "internet", "software", "google", "yahoo","monster","msi","lenovo","ibm"};
+            KelimeBankasi = new List<string>() { "aa", "cronom", "internet", "software", "google", "yahoo","monster","msi","lenovo","ibm","microsoft","apple","android"};
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -40,24 +41,23 @@ namespace LevenshteinAlgoritmasi
             return (kelimeUzunlugu / 2);
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void metroTextBox1_TextChanged(object sender, EventArgs e)
         {
-            string aranan = textBox1.Text;
+            string aranan = metroTextBox1.Text;
             IEnumerable<string> tmp = BenzerleriniBul(aranan.ToLower());
             if (tmp != null && tmp.Count<string>() > 0)
             {
-                label1.Text = @"Bunu mu demek istediniz? ";
+                htmlLabel1.Text = @"Bunu mu demek istediniz?  ";
                 foreach (string a in tmp)
-                    label1.Text += a + @" ";
+                    htmlLabel1.Text +=@"<b style=color:blue>"+ a + @",</b> ";
             }
             else
-                label1.Text = "Öneri Bulunamadı";
+                htmlLabel1.Text = @"<b style=color:red>Öneri bulunamadı</b> ";
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
-
-        
-
-
+        }
     }
 }
